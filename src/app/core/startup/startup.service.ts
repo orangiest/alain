@@ -35,8 +35,8 @@ export class StartupService {
       this.httpClient.get('assets/tmp/app-data.json')
     ).pipe(
       catchError(([appData]) => {
-          resolve(null);
-          return [appData];
+        resolve(null);
+        return [appData];
       })
     ).subscribe(([appData]) => {
 
@@ -53,12 +53,12 @@ export class StartupService {
       // Can be set page suffix title, https://ng-alain.com/theme/title
       this.titleService.suffix = res.app.name;
     },
-    () => { },
-    () => {
-      resolve(null);
-    });
+      () => { },
+      () => {
+        resolve(null);
+      });
   }
-  
+
   private viaMock(resolve: any, reject: any) {
     // const tokenData = this.tokenService.get();
     // if (!tokenData.token) {
@@ -86,19 +86,56 @@ export class StartupService {
     // Menu data, https://ng-alain.com/theme/menu
     this.menuService.add([
       {
-        text: 'Main',
+        text: '主导航',
         group: true,
         children: [
           {
-            text: 'Dashboard',
+            text: '仪表盘',
             link: '/dashboard',
             icon: { type: 'icon', value: 'appstore' }
           },
           {
-            text: 'Quick Menu',
+            text: '快捷导航',
             icon: { type: 'icon', value: 'rocket' },
             shortcutRoot: true
           }
+        ]
+      },
+      {
+        text: '功能',
+        group: true,
+        children: [
+          {
+            text: '资源中心',
+            link: 'res',
+            icon: { type: 'icon', value: 'appstore' }
+          },
+          {
+            text: '用户管理',
+            link: 'res',
+            icon: { type: 'icon', value: 'appstore' }
+          },
+          {
+            text: '公告管理',
+            link: 'res',
+            icon: { type: 'icon', value: 'appstore' }
+          }
+        ]
+      },
+      {
+        text: '配置中心',
+        group: true,
+        children: [
+          {
+            text: '监控设置',
+            link: 'res',
+            icon: { type: 'icon', value: 'appstore' }
+          },
+          {
+            text: '云存储设置',
+            link: 'res',
+            icon: { type: 'icon', value: 'appstore' }
+          },
         ]
       }
     ]);
