@@ -1,0 +1,37 @@
+<page-header [title]="'公告管理'" [action]="phActionTpl">
+  <ng-template #phActionTpl>
+    <button nz-button nzType="primary">新建</button>
+  </ng-template>
+</page-header>
+<nz-card [nzBordered]="false">
+  <nz-list nzItemLayout="vertical" [nzDataSource]="list" [nzRenderItem]="item">
+    <ng-template #item let-item>
+      <nz-list-item [nzContent]="nzContent" [nzExtra]="nzExtra" [nzActions]="item.loading ? [] : [editAction, moreAction]">
+        <ng-template #nzExtra>
+          <div style="width: 272px; height: 1px;"></div>
+        </ng-template>
+        <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+          <ng-template #nzTitle>
+            <a href="{{ item.href }}" target="_blank">{{ item.title }}</a>
+          </ng-template>
+          <ng-template #nzDescription>
+            <nz-tag>Alain</nz-tag>
+            <nz-tag>ng-zorro-antd</nz-tag>
+            <nz-tag>Ant Design</nz-tag>
+          </ng-template>
+        </nz-list-item-meta>
+        <ng-template #nzContent>
+          <p>{{ item.content }}</p>
+          <div class="mt-md d-flex">
+            <nz-avatar [nzSrc]="item.avatar" [nzSize]="'small'" class="mr-sm"></nz-avatar>
+            <a href="{{ item.href }}" target="_blank">{{ item.owner }}</a>
+            <span class="px-sm">发布时间</span>
+            <time class="pl-md text-grey" title="{{ item.updatedAt }}">{{ item.updatedAt | _date }}</time>
+          </div>
+        </ng-template>
+      </nz-list-item>
+      <ng-template #editAction><a>编辑</a></ng-template>
+      <ng-template #moreAction><a>删除</a></ng-template>
+    </ng-template>
+  </nz-list>
+</nz-card>

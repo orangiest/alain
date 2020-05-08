@@ -83,6 +83,5 @@
     "@angularclass/hmr": "^2.1.3"
   },
   "husky": {
-
   }
 }

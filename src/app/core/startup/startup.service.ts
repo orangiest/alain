@@ -94,11 +94,11 @@ export class StartupService {
             link: '/dashboard',
             icon: { type: 'icon', value: 'appstore' }
           },
-          {
-            text: '快捷导航',
-            icon: { type: 'icon', value: 'rocket' },
-            shortcutRoot: true
-          }
+          // {
+          //   text: '快捷导航',
+          //   icon: { type: 'icon', value: 'rocket' },
+          //   shortcutRoot: true
+          // }
         ]
       },
       {
@@ -112,12 +112,17 @@ export class StartupService {
           },
           {
             text: '用户管理',
-            link: 'res',
+            link: '/users',
             icon: { type: 'icon', value: 'appstore' }
           },
           {
             text: '公告管理',
-            link: 'res',
+            link: '/notice',
+            icon: { type: 'icon', value: 'appstore' }
+          },
+          {
+            text: '监控中心',
+            link: '/monitor',
             icon: { type: 'icon', value: 'appstore' }
           }
         ]

@@ -3,8 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ResourcesListComponent } from './list/list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
-  { path: 'list', component: ResourcesListComponent }];
+  { path: '', component: ResourcesListComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -28,6 +28,11 @@ const routes: Routes = [
       // 业务子模块
       // { path: 'widgets', loadChildren: () => import('./widgets/widgets.module').then(m => m.WidgetsModule) },
       { path: 'resources', loadChildren: () => import('./resources/resources.module').then(m => m.ResourcesModule) },
+      { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
+      { path: 'notice', loadChildren: () => import('./notice/notice.module').then(m => m.NoticeModule) },
+      { path: 'monitor', loadChildren: () => import('./monitor/monitor.module').then(m => m.MonitorModule) }
+
+
 
     ]
   },
