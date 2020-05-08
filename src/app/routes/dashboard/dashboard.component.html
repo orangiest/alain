@@ -1,1 +1,88 @@
-<page-header></page-header>
+<page-header [content]="content">
+  <ng-template #content>
+    <div class="content">
+      <div class="desc">
+        <div class="desc-title">早安，山治，我要吃肉！</div>
+        <div>假砖家 | 地球－伟大航道－黄金梅丽号－厨房－小强部门</div>
+      </div>
+    </div>
+  </ng-template>
+</page-header>
+<div nz-row [nzGutter]="16" class="pt-lg">
+  <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="6">
+    <g2-card [title]="'访问量'" [bordered]="true" [total]="'126,560.00'" footer="日访问量 12,423" contentHeight="46" [action]="action1">
+      <ng-template #action1>
+        <i nz-tooltip nzTooltipTitle="资源访问量" nz-icon nzType="info-circle"></i>
+      </ng-template>
+    </g2-card>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="6">
+    <g2-card [title]="'上传量'" [bordered]="true" [total]="'126,560.00'" footer="日上传量 12,423" contentHeight="46" [action]="action2">
+      <ng-template #action2>
+        <i nz-tooltip nzTooltipTitle="资源上传量" nz-icon nzType="info-circle"></i>
+      </ng-template>
+    </g2-card>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="6">
+    <g2-card [title]="'下载量'" [bordered]="true" [total]="'126,560.00'" footer="日下载量 12,423" contentHeight="46" [action]="action3">
+      <ng-template #action3>
+        <i nz-tooltip nzTooltipTitle="资源下载量" nz-icon nzType="info-circle"></i>
+      </ng-template>
+    </g2-card>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="12" nzLg="6">
+    <g2-card [title]="'异常量'" [bordered]="true" [total]="'0'" footer="日异常量 12,423" contentHeight="46" [action]="action4">
+      <ng-template #action4>
+        <i nz-tooltip nzTooltipTitle="资源异常量" nz-icon nzType="info-circle"></i>
+      </ng-template>
+    </g2-card>
+  </div>
+</div>
+
+<g2-card [title]="'周访问量'">
+  <div nz-row nzGutter="24">
+    <g2-bar height="300" [data]="salesData" nz-col nzSpan="16"></g2-bar>
+    <div nz-col nzSpan="8">
+      <div nz-row>
+        <div nz-col nzSpan="24" class="progress">
+          <h2>阿里云</h2>
+          <span>访问量占比</span>
+          <nz-progress [nzPercent]="30" nzStrokeColor="#ff6a00"></nz-progress>
+        </div>
+        <div nz-col nzSpan="24" class="progress">
+          <h2>腾讯云</h2>
+          <span>访问量占比</span>
+          <nz-progress [nzPercent]="30" nzStrokeColor="#17202f"></nz-progress>
+        </div>
+        <div nz-col nzSpan="24" class="progress">
+          <h2>七牛云</h2>
+          <span>访问量占比</span>
+          <nz-progress [nzPercent]="30" nzStrokeColor="#00a7e1"></nz-progress>
+        </div>
+      </div>
+    </div>
+  </div>
+</g2-card>
+
+<div nz-row nzGutter="16">
+  <div nz-col nzSpan="8">
+    <nz-card nzTitle="公告列表">
+      <p>Card content</p>
+    </nz-card>
+  </div>
+  <div nz-col nzSpan="16">
+    <nz-card nzTitle="用量情况">
+      <div nz-row nzType="flex" nzJustify="space-around">
+        <div nz-col nzSpan="8">
+          <g2-pie percent="28" subTitle="阿里云" total="28%" height="150" color="#ff6a00"></g2-pie>
+        </div>
+        <div nz-col nzSpan="8">
+          <g2-pie percent="28" subTitle="腾讯云" total="28%" height="150" color="#17202f"></g2-pie>
+        </div>
+        <div nz-col nzSpan="8">
+          <g2-pie percent="28" subTitle="七牛云" total="28%" height="150" color="#00a7e1"></g2-pie>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+</div>

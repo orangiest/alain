@@ -18,6 +18,7 @@ export const SHARED_DELON_MODULES = [
   GlobalFooterModule,
   STModule,
   SEModule,
-  SVModule,
+  SVModule
+
   // ReuseTabModule,
 ];
