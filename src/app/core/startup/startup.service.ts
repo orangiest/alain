@@ -107,7 +107,7 @@ export class StartupService {
         children: [
           {
             text: '资源中心',
-            link: 'res',
+            link: '/resources',
             icon: { type: 'icon', value: 'appstore' }
           },
           {
