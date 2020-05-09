@@ -4,12 +4,13 @@ import { SettingsService } from '@delon/theme';
 @Component({
   selector: 'layout-header',
   templateUrl: './header.component.html',
+  styleUrls: ["./header.component.less"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   searchToggleStatus: boolean;
 
-  constructor(public settings: SettingsService) {}
+  constructor(public settings: SettingsService) { }
 
   toggleCollapsedSidebar() {
     this.settings.setLayout('collapsed', !this.settings.layout.collapsed);

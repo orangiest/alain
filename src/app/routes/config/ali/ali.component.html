@@ -1,0 +1,23 @@
+<page-header></page-header>
+<nz-card>
+  <nz-spin [nzSpinning]="loading">
+    <div class="main">
+      <div class="left">
+        <form nz-form nzLayout="vertical" #f="ngForm" (submit)="save()" se-container="1">
+          <se label="accessKey" error="此为必填项">
+            <input nz-input type="email" [(ngModel)]="yun.accessKey" name="accessKey" required />
+          </se>
+          <se label="secretKey" error="此为必填项">
+            <input nz-input [(ngModel)]="yun.secretKey" name="secretKey" required />
+          </se>
+          <se>
+            <button nz-button nzType="primary" [disabled]="f.invalid">更新基本信息</button>
+          </se>
+        </form>
+      </div>
+      <div class="right">
+        <div class="avatar"><img src="http://assets.cwm.wiki/config/aliyun.jpg" alt="Avatar" /></div>
+      </div>
+    </div>
+  </nz-spin>
+</nz-card>

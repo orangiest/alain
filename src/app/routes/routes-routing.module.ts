@@ -30,7 +30,9 @@ const routes: Routes = [
       { path: 'resources', loadChildren: () => import('./resources/resources.module').then(m => m.ResourcesModule) },
       { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
       { path: 'notice', loadChildren: () => import('./notice/notice.module').then(m => m.NoticeModule) },
-      { path: 'monitor', loadChildren: () => import('./monitor/monitor.module').then(m => m.MonitorModule) }
+      { path: 'monitor', loadChildren: () => import('./monitor/monitor.module').then(m => m.MonitorModule) },
+      { path: 'setting', loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule) },
+      { path: 'config', loadChildren: () => import('./config/config.module').then(m => m.ConfigModule) }
 
 
 

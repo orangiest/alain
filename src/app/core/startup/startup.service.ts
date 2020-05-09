@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 import { NzIconService } from 'ng-zorro-antd/icon';
 import { ICONS } from '../../../style-icons';
 import { ICONS_AUTO } from '../../../style-icons-auto';
+import { group } from '@angular/animations';
 
 /**
  * Used for application startup
@@ -111,8 +112,8 @@ export class StartupService {
             icon: { type: 'icon', value: 'appstore' }
           },
           {
-            text: '用户管理',
-            link: '/users',
+            text: '监控中心',
+            link: '/monitor',
             icon: { type: 'icon', value: 'appstore' }
           },
           {
@@ -121,10 +122,10 @@ export class StartupService {
             icon: { type: 'icon', value: 'appstore' }
           },
           {
-            text: '监控中心',
-            link: '/monitor',
+            text: '用户管理',
+            link: '/users',
             icon: { type: 'icon', value: 'appstore' }
-          }
+          },
         ]
       },
       {
@@ -132,14 +133,31 @@ export class StartupService {
         group: true,
         children: [
           {
-            text: '监控设置',
-            link: 'res',
+            text: '个人设置',
+            link: '/setting',
             icon: { type: 'icon', value: 'appstore' }
           },
           {
-            text: '云存储设置',
-            link: 'res',
-            icon: { type: 'icon', value: 'appstore' }
+            text: '全局设置',
+            icon: { type: 'icon', value: 'appstore' },
+            group: true,
+            children: [
+              {
+                text: '阿里云配置',
+                link: '/config/ali',
+                icon: { type: 'icon', value: 'appstore' }
+              },
+              {
+                text: '腾讯云配置',
+                link: '/config/tencent',
+                icon: { type: 'icon', value: 'appstore' }
+              },
+              {
+                text: '七牛云配置',
+                link: '/config/qiniu',
+                icon: { type: 'icon', value: 'appstore' }
+              },
+            ]
           },
         ]
       }
