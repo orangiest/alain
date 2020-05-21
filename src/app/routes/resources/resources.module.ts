@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
 import { ResourcesListComponent } from './list/list.component';
 import { ResourcesRoutingModule } from './resources-routing.module';
+import { ResourcesDetailComponent } from './detial/detial.component';
 
 const COMPONENTS = [
-  ResourcesListComponent];
+  ResourcesListComponent,
+  ResourcesDetailComponent];
 const COMPONENTS_NOROUNT = [];
 
 @NgModule({

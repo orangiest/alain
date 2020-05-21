@@ -13,9 +13,19 @@ export class MonitorIndexComponent implements OnInit {
 
   data: any[] = [
     {
-      title: "test",
+      title: "test.png",
       href: '#',
       logo: 'https://gw.alipayobjects.com/zos/rmsportal/HrxcVbrKnCJOZvtzSqjN.png',
+      subDescription: "访问超时",
+      createdAt: "2018-10-10",
+      owner: "admin",
+      status: "success",
+      percent: 100
+    },
+    {
+      title: "test2.png",
+      href: '#',
+      logo: 'https://monitor-1251426495.oss-cn-beijing.aliyuncs.com/20200422203839_JD%E5%9B%BE%E7%89%87%E6%9C%AA%E5%8A%A0%E8%BD%BD.png',
       subDescription: "访问超时",
       createdAt: "2018-10-10",
       owner: "admin",

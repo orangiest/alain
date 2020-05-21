@@ -19,16 +19,16 @@ import { SettingsService } from '@delon/theme';
       <div nz-menu class="width-sm">
         <div nz-menu-item routerLink="/pro/account/center">
           <i nz-icon nzType="user" class="mr-sm"></i>
-          个人中心
+          个人设置
         </div>
         <div nz-menu-item routerLink="/pro/account/settings">
           <i nz-icon nzType="setting" class="mr-sm"></i>
-          个人设置
+          全局设置
         </div>
-        <div nz-menu-item routerLink="/exception/trigger">
+        <!-- <div nz-menu-item routerLink="/exception/trigger">
           <i nz-icon nzType="close-circle" class="mr-sm"></i>
           触发错误
-        </div>
+        </div> -->
         <li nz-menu-divider></li>
         <div nz-menu-item (click)="logout()">
           <i nz-icon nzType="logout" class="mr-sm"></i>
@@ -44,7 +44,7 @@ export class HeaderUserComponent {
     public settings: SettingsService,
     private router: Router,
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
-  ) {}
+  ) { }
 
   logout() {
     this.tokenService.clear();

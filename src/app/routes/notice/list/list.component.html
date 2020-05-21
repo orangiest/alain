@@ -1,12 +1,12 @@
-<page-header [title]="'公告管理'" [action]="phActionTpl">
-  <ng-template #phActionTpl>
-    <button nz-button nzType="primary">新建</button>
-  </ng-template>
-</page-header>
+<page-header [title]="'公告管理'"> </page-header>
 <nz-card [nzBordered]="false">
-  <nz-list nzItemLayout="vertical" [nzDataSource]="list" [nzRenderItem]="item">
+  <button (click)="add(modalContent)" nz-button [nzType]="'dashed'">
+    <i nz-icon nzType="plus"></i>
+    <span>发布新公告</span>
+  </button>
+  <nz-list nzItemLayout="vertical" [nzDataSource]="list" [nzRenderItem]="item" [nzLoading]="loading">
     <ng-template #item let-item>
-      <nz-list-item [nzContent]="nzContent" [nzExtra]="nzExtra" [nzActions]="item.loading ? [] : [editAction, moreAction]">
+      <nz-list-item [nzContent]="nzContent" [nzExtra]="nzExtra" [nzActions]="item.loading ? [] : [moreAction]">
         <ng-template #nzExtra>
           <div style="width: 272px; height: 1px;"></div>
         </ng-template>
@@ -15,9 +15,8 @@
             <a href="{{ item.href }}" target="_blank">{{ item.title }}</a>
           </ng-template>
           <ng-template #nzDescription>
-            <nz-tag>Alain</nz-tag>
-            <nz-tag>ng-zorro-antd</nz-tag>
-            <nz-tag>Ant Design</nz-tag>
+            <nz-tag>系统公告</nz-tag>
+            <nz-tag>外部文档</nz-tag>
           </ng-template>
         </nz-list-item-meta>
         <ng-template #nzContent>
@@ -26,12 +25,35 @@
             <nz-avatar [nzSrc]="item.avatar" [nzSize]="'small'" class="mr-sm"></nz-avatar>
             <a href="{{ item.href }}" target="_blank">{{ item.owner }}</a>
             <span class="px-sm">发布时间</span>
-            <time class="pl-md text-grey" title="{{ item.updatedAt }}">{{ item.updatedAt | _date }}</time>
+            <time class="pl-md text-grey" title="{{ item.time }}">{{ item.time | date: 'MM/dd/yyyy' }}</time>
           </div>
         </ng-template>
       </nz-list-item>
-      <ng-template #editAction><a>编辑</a></ng-template>
-      <ng-template #moreAction><a>删除</a></ng-template>
+      <ng-template #moreAction
+        ><a
+          nz-popconfirm
+          nzPopconfirmTitle="确认删除此项？"
+          nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="delete(item)"
+          (nzOnCancel)="cancel()"
+          >删除</a
+        ></ng-template
+      >
     </ng-template>
   </nz-list>
 </nz-card>
+
+<ng-template #modalContent>
+  <nz-form-item>
+    <nz-form-label nzFor="no">标题</nz-form-label>
+    <nz-form-control>
+      <input nz-input [(ngModel)]="title" name="title" placeholder="请输入标题" id="no" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="no">内容</nz-form-label>
+    <nz-form-control>
+      <textarea rows="4" nz-input [(ngModel)]="content" name="content" placeholder="请输入内容"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+</ng-template>

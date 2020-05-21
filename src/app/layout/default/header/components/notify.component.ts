@@ -49,10 +49,10 @@ export class HeaderNotifyComponent {
       clearText: '清空待办',
     },
   ];
-  count = 5;
+  count = 2;
   loading = false;
 
-  constructor(private msg: NzMessageService, private nzI18n: NzI18nService) {}
+  constructor(private msg: NzMessageService, private nzI18n: NzI18nService) { }
 
   updateNoticeData(notices: NoticeIconList[]): NoticeItem[] {
     const data = this.data.slice();

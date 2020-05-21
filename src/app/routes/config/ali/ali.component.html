@@ -10,6 +10,9 @@
           <se label="secretKey" error="此为必填项">
             <input nz-input [(ngModel)]="yun.secretKey" name="secretKey" required />
           </se>
+          <se label="流量额度(单位MB)" error="此为必填项">
+            <input nz-input [(ngModel)]="yun.total" name="total" required />
+          </se>
           <se>
             <button nz-button nzType="primary" [disabled]="f.invalid">更新基本信息</button>
           </se>

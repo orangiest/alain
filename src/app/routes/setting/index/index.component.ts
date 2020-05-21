@@ -9,7 +9,7 @@ import { _HttpClient } from '@delon/theme';
 export class SettingIndexComponent implements OnInit {
   loading = false;
   user = {
-    email: "737149646@qq.com",
+    email: "admin@qq.com",
     name: "admin",
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png",
   }

@@ -3,14 +3,14 @@
     <nz-avatar class="alain-default__aside-user-avatar" [nzSrc]="settings.user.avatar"></nz-avatar>
     <div class="alain-default__aside-user-info">
       <strong>{{ settings.user.name }}</strong>
-      <p class="mb0">{{ settings.user.email }}</p>
+      <p class="mb0">admin@qq.com</p>
     </div>
   </div>
   <nz-dropdown-menu #userMenu="nzDropdownMenu">
     <ul nz-menu>
-      <li nz-menu-item routerLink="/pro/account/center">个人中心</li>
-      <li nz-menu-item routerLink="/pro/account/settings">个人设置</li>
+      <li nz-menu-item routerLink="/pro/account/center">个人设置</li>
+      <li nz-menu-item routerLink="/pro/account/settings">全局设置</li>
     </ul>
   </nz-dropdown-menu>
-  <sidebar-nav class="d-block py-lg"></sidebar-nav>
+  <sidebar-nav nzOpen="true" class="d-block py-lg" openStrictly="true"></sidebar-nav>
 </div>

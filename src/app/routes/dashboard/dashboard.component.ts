@@ -16,6 +16,21 @@ export class DashboardComponent implements OnInit {
     color: '#2194ff',
   }));
 
+  noticeData: any[] = [
+    {
+      "title": "阿里云配置说明",
+      "content": "点击查看详情"
+    },
+    {
+      "title": "腾讯云配置说明",
+      "content": "点击查看详情"
+    },
+    // {
+    //   "title": "七牛云配置说明",
+    //   "content": "点击查看详情"
+    // }
+  ]
+
   ngOnInit() {
   }
 

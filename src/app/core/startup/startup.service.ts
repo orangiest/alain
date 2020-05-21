@@ -33,7 +33,7 @@ export class StartupService {
 
   private viaHttp(resolve: any, reject: any) {
     zip(
-      this.httpClient.get('assets/tmp/app-data.json')
+      this.httpClient.get('./assets/tmp/app-data.json')
     ).pipe(
       catchError(([appData]) => {
         resolve(null);
@@ -93,7 +93,7 @@ export class StartupService {
           {
             text: '仪表盘',
             link: '/dashboard',
-            icon: { type: 'icon', value: 'appstore' }
+            icon: { type: 'icon', value: 'home' }
           },
           // {
           //   text: '快捷导航',
@@ -114,17 +114,17 @@ export class StartupService {
           {
             text: '监控中心',
             link: '/monitor',
-            icon: { type: 'icon', value: 'appstore' }
+            icon: { type: 'icon', value: 'radar-chart' }
           },
           {
             text: '公告管理',
             link: '/notice',
-            icon: { type: 'icon', value: 'appstore' }
+            icon: { type: 'icon', value: 'audit' }
           },
           {
             text: '用户管理',
             link: '/users',
-            icon: { type: 'icon', value: 'appstore' }
+            icon: { type: 'icon', value: 'user' }
           },
         ]
       },
@@ -135,27 +135,27 @@ export class StartupService {
           {
             text: '个人设置',
             link: '/setting',
-            icon: { type: 'icon', value: 'appstore' }
+            icon: { type: 'icon', value: 'profile' }
           },
           {
             text: '全局设置',
-            icon: { type: 'icon', value: 'appstore' },
+            icon: { type: 'icon', value: 'setting' },
             group: true,
             children: [
               {
                 text: '阿里云配置',
                 link: '/config/ali',
-                icon: { type: 'icon', value: 'appstore' }
+                icon: { type: 'icon', value: 'aliyun' }
               },
               {
                 text: '腾讯云配置',
                 link: '/config/tencent',
-                icon: { type: 'icon', value: 'appstore' }
+                icon: { type: 'icon', value: 'codepen-circle' }
               },
               {
                 text: '七牛云配置',
                 link: '/config/qiniu',
-                icon: { type: 'icon', value: 'appstore' }
+                icon: { type: 'icon', value: 'ant-cloud' }
               },
             ]
           },
