@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
+import { Config } from 'src/app/shared/domain/config';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-config-qiniu',
@@ -7,15 +9,43 @@ import { _HttpClient } from '@delon/theme';
   styleUrls: ["./qiniu.component.less"]
 })
 export class ConfigQiniuComponent implements OnInit {
-  yun: any = {
-    accessKey: "J3GdyGZQ0-_6IXr0o1oPtStijmbQ66wsz0Euoi2h",
-    secretKey: "F2ea5kVfOlX1h_dv4yIIic0NH7eU_X18566dN3o2",
-    total: 1024
-  }
   loading = false;
-  constructor(private http: _HttpClient) { }
+  yun: any = {};
+  constructor(private http: _HttpClient, private msg: NzMessageService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getData();
+  }
 
-  save() { }
+  getData() {
+    this.loading = true;
+    this.http.get("/config/qiniu").subscribe(
+      res => {
+        this.loading = false;
+        this.yun = res.data;
+      }
+    )
+  }
+
+  save() {
+    this.loading = true;
+    let update = {
+      "systemId": this.yun.systemId,
+      "accessKey": this.yun.accessKey,
+      "secretKey": this.yun.secretKey,
+      "quota": this.yun.quota,
+      "time": this.yun.time
+    }
+    this.http.put("/config", update).subscribe(
+      res => {
+        this.loading = false;
+        if (res.data == true) {
+          this.msg.success("更新成功");
+          this.getData();
+        } else {
+          this.msg.success("更新失败")
+        }
+      }
+    )
+  }
 }

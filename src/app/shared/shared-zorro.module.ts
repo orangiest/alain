@@ -28,6 +28,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 export const SHARED_ZORRO_MODULES = [
   NzUploadModule,
   NzFormModule,
@@ -59,5 +60,6 @@ export const SHARED_ZORRO_MODULES = [
   NzCheckboxModule,
   NzListModule,
   NzTagModule,
+  NzDatePickerModule
 ];
 
