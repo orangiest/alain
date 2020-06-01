@@ -4,6 +4,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Notice } from '../../../shared/domain/notice';
 import { TokenService, DA_SERVICE_TOKEN } from '@delon/auth';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class NoticeListComponent implements OnInit {
   title = "";
   content = "";
 
-  constructor(private http: _HttpClient, private modal: ModalHelper, private modalSrv: NzModalService, private msg: NzMessageService, @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService) { }
+  constructor(private http: _HttpClient, private modal: ModalHelper, private modalSrv: NzModalService, private msg: NzMessageService, @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService, private router: Router) { }
 
   ngOnInit() {
     this.getData()
@@ -28,6 +29,10 @@ export class NoticeListComponent implements OnInit {
   }
 
   add(tpl: TemplateRef<{}>) {
+    if (this.tokenService.get().type != 0) {
+      this.router.navigate(['/exception/403']);
+      return;
+    }
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
@@ -55,6 +60,10 @@ export class NoticeListComponent implements OnInit {
   }
 
   delete(item: Notice) {
+    if (this.tokenService.get().type != 0) {
+      this.router.navigate(['/exception/403']);
+      return;
+    }
     this.loading = true;
     this.http.delete("/notice/" + item.systemId).subscribe(
       res => {

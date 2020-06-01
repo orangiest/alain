@@ -1,43 +1,43 @@
 <page-header></page-header>
-<nz-card [nzBordered]="false">
+<nz-card [nzBordered]="false" [nzLoading]="loading">
   <div nz-row>
     <div nz-col [nzXs]="24" [nzSm]="8" class="header-info">
       <i nz-icon nzType="close-circle" nzTheme="outline"></i>
       <span class="text-grey-dark">异常总数</span>
-      <span class="d-block display-2">2</span>
+      <span class="d-block display-2">{{ count.total }}</span>
       <em></em>
     </div>
     <div nz-col [nzXs]="24" [nzSm]="8" class="header-info">
       <i nz-icon nzType="check-circle" nzTheme="outline"></i>
       <span class="text-grey-dark">已解决</span>
-      <span class="d-block display-2">1</span>
+      <span class="d-block display-2">{{ count.success }}</span>
       <em></em>
     </div>
     <div nz-col [nzXs]="24" [nzSm]="8" class="header-info">
       <i nz-icon nzType="info-circle" nzTheme="outline"></i>
       <span class="text-grey-dark">待解决</span>
-      <span class="d-block display-2">1</span>
+      <span class="d-block display-2">{{ count.error }}</span>
     </div>
   </div>
 </nz-card>
-<nz-card [nzBordered]="false">
+<nz-card [nzBordered]="false" [nzLoading]="loading">
   <div class="d-flex align-items-center mb-lg">
     <h3 class="flex-1 text-lg">异常资源</h3>
     <div>
-      <nz-radio-group [(ngModel)]="q.status" class="mr-md">
+      <nz-radio-group [(ngModel)]="status" class="mr-md" (ngModelChange)="changeStatus($event)">
         <label nz-radio-button [nzValue]="'all'">
           <span>全部</span>
         </label>
-        <label nz-radio-button [nzValue]="'progress'">
+        <label nz-radio-button [nzValue]="'success'">
           <span>已解决</span>
         </label>
-        <label nz-radio-button [nzValue]="'waiting'">
+        <label nz-radio-button [nzValue]="'error'">
           <span>待解决</span>
         </label>
       </nz-radio-group>
-      <nz-input-group nzSuffixIcon="search" style="width: 270px;">
-        <input type="text" nz-input placeholder="请输入" [(ngModel)]="q.q" name="q" />
-      </nz-input-group>
+      <!-- <nz-input-group nzSuffixIcon="search" style="width: 270px;">
+        <input type="text" nz-input placeholder="请输入" name="q" />
+      </nz-input-group> -->
     </div>
   </div>
   <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzPagination]="pagination">
@@ -48,19 +48,19 @@
         </ng-template>
         <ng-template #op>
           <a class="ant-dropdown-link" nz-dropdown [nzDropdownMenu]="opMenu">
-            更多
+            操作
             <i nz-icon nzType="down"></i>
           </a>
           <nz-dropdown-menu #opMenu="nzDropdownMenu">
-            <!-- <ul nz-menu>
-              <li nz-menu-item (click)="openEdit(item)">编辑</li>
-              <li nz-menu-item (click)="msg.success('删除：' + item.title)">删除</li>
-            </ul> -->
+            <ul nz-menu>
+              <li *ngIf="item.status === 'exception'" nz-menu-item (click)="update(item)">更新</li>
+              <li nz-menu-item (click)="delete(item)">删除</li>
+            </ul>
           </nz-dropdown-menu>
         </ng-template>
         <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="item.subDescription" [nzAvatar]="nzAvatar">
           <ng-template #nzTitle>
-            <a href="{{ item.href }}" target="_blank">{{ item.title }}</a>
+            <a href="{{ item.href }}" target="_blank">{{ item.localName }}</a>
           </ng-template>
           <ng-template #nzAvatar>
             <nz-avatar [nzSrc]="item.logo" nzSize="large" [nzShape]="'square'"></nz-avatar>
@@ -75,7 +75,7 @@
               </div>
               <div class="text-right">
                 开始时间
-                <p>{{ item.createdAt | _date }}</p>
+                <p>{{ item.time | date: 'MM/dd/yyyy' }}</p>
               </div>
             </div>
             <nz-progress [nzPercent]="item.percent" [nzStatus]="item.status" [nzStrokeWidth]="6"></nz-progress>

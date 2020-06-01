@@ -7,6 +7,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { User } from 'src/app/shared/domain/user';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DA_SERVICE_TOKEN, TokenService } from '@delon/auth';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -74,9 +75,12 @@ export class UsersListComponent implements OnInit {
     }
   ];
 
-  constructor(private http: _HttpClient, private modal: ModalHelper, private modalSrv: NzModalService, private msg: NzMessageService, @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService) { }
+  constructor(private http: _HttpClient, private modal: ModalHelper, private modalSrv: NzModalService, private msg: NzMessageService, @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService, private router: Router) { }
 
   ngOnInit() {
+    if (this.tokenService.get().type != 0) {
+      this.router.navigate(['/exception/403']);
+    }
     this.getData();
   }
 

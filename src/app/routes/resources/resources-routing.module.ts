@@ -5,7 +5,7 @@ import { ResourcesDetailComponent } from './detial/detial.component';
 
 const routes: Routes = [
   { path: '', component: ResourcesListComponent },
-  { path: 'detial/1', component: ResourcesDetailComponent }
+  { path: 'detial/:systemId', component: ResourcesDetailComponent }
 
   ,];
 

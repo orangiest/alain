@@ -1,18 +1,25 @@
 <page-header [title]="'资源中心'">
   数字资源管理中心，点击上传按钮选择上传类型。支持附件、图片、音视频上传。点击预览图片可查看详情。
 </page-header>
-<nz-list [nzDataSource]="list" [nzRenderItem]="item" [nzGrid]="{ gutter: 24, lg: 6, md: 8, sm: 12, xs: 24 }">
+<nz-list [nzDataSource]="list" [nzRenderItem]="item" [nzGrid]="{ gutter: 24, lg: 6, md: 8, sm: 12, xs: 24 }" [nzLoading]="loading">
   <ng-template #item let-item>
     <nz-list-item>
-      <button (click)="add(modalContent)" *ngIf="item === null" nz-button [nzType]="'dashed'" style="width: 100%; height: 200px;">
+      <button
+        (click)="add(modalContent)"
+        *ngIf="item === null"
+        nz-button
+        [nzType]="'dashed'"
+        style="width: 100%; height: 200px;"
+        [nzLoading]="loading"
+      >
         <i nz-icon nzType="plus"></i>
         <span>上传</span>
       </button>
-      <nz-card *ngIf="item !== null" nzHoverable [nzCover]="coverTemplate">
-        <nz-card-meta nzTitle="{{ item.title }}"></nz-card-meta>
+      <nz-card *ngIf="item !== null" nzHoverable [nzCover]="coverTemplate" [nzLoading]="loading" routerLink="detial/{{ item.systemId }}">
+        <nz-card-meta nzTitle="{{ item.localName }}"></nz-card-meta>
       </nz-card>
       <ng-template #coverTemplate>
-        <img alt="{{ item.title }}" src="{{ item.link }}" height="200px" width="240px" />
+        <img alt="{{ item.localName }}" src="{{ item.link }}" height="200px" width="240px" />
       </ng-template>
     </nz-list-item>
   </ng-template>
@@ -20,18 +27,18 @@
 
 <ng-template #modalContent>
   请选择：
-  <nz-radio-group class="mr-md">
-    <label nz-radio-button [nzValue]="'img'">
-      <span>图片</span>
-    </label>
-    <label nz-radio-button [nzValue]="'file'">
+  <nz-radio-group class="mr-md" id="group" [(ngModel)]="fileType">
+    <label nz-radio-button [nzValue]="'0'">
       <span>附件</span>
     </label>
-    <label nz-radio-button [nzValue]="'other'">
+    <label nz-radio-button [nzValue]="'1'">
+      <span>图片</span>
+    </label>
+    <label nz-radio-button [nzValue]="'2'">
       <span>多媒体</span>
     </label>
   </nz-radio-group>
-  <nz-upload nzType="drag" [nzMultiple]="true">
+  <nz-upload nzType="drag" [nzMultiple]="false" [nzBeforeUpload]="beforeUpload" [nzFileList]="fileList">
     <p class="ant-upload-drag-icon">
       <i nz-icon nzType="inbox"></i>
     </p>

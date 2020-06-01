@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Config } from 'src/app/shared/domain/config';
+import { DA_SERVICE_TOKEN } from '@delon/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-config-ali',
@@ -12,9 +14,13 @@ export class ConfigAliComponent implements OnInit {
   date = null;
   loading = false;
   yun: any = {};
-  constructor(private http: _HttpClient, private msg: NzMessageService) { }
+  constructor(private http: _HttpClient, private msg: NzMessageService, @Inject(DA_SERVICE_TOKEN) private tokenService, private router: Router) { }
 
   ngOnInit() {
+    if (this.tokenService.get().type != 0) {
+      this.router.navigate(['/exception/403']);
+      return;
+    }
     this.getData();
   }
 

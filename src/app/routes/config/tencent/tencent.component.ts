@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { Config } from 'src/app/shared/domain/config';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { DA_SERVICE_TOKEN } from '@delon/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-config-tencent',
@@ -11,9 +13,13 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 export class ConfigTencentComponent implements OnInit {
   loading = false;
   yun: any = {};
-  constructor(private http: _HttpClient, private msg: NzMessageService) { }
+  constructor(private http: _HttpClient, private msg: NzMessageService, @Inject(DA_SERVICE_TOKEN) private tokenService, private router: Router) { }
 
   ngOnInit() {
+    if (this.tokenService.get().type != 0) {
+      this.router.navigate(['/exception/403']);
+      return;
+    }
     this.getData();
   }
 
